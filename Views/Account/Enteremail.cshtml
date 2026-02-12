@@ -1,0 +1,491 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Enter Email</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 16px 12px;
+        }
+
+       
+
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 360px;
+            display: block;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .right {
+            padding: 20px;
+        }
+
+        .right h2 {
+            margin-bottom: 14px;
+            color: #1f2937;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input {
+            padding: 10px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+            background-color: #ffffff;
+            width: 100%;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 4px rgba(59,130,246,0.15);
+            background-color: #ffffff;
+        }
+
+        .submit-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform .1s ease, box-shadow .2s ease, background-color .2s ease;
+            box-shadow: 0 6px 16px rgba(37,99,235,0.25);
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+            box-shadow: 0 10px 22px rgba(37,99,235,0.3);
+            transform: translateY(-1px);
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 8px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .link a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        .social-buttons {
+            margin-bottom: 12px;
+        }
+
+        .social-buttons button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .google-btn {
+            background-color: #ffffff;
+            color: #3c4043;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 8px;
+            transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease;
+        }
+
+        .google-btn:hover {
+            background-color: #f9fafb;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+            transform: translateY(-1px);
+        }
+
+        .google-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #9ca3af;
+            font-size: 12px;
+            margin: 8px 0 4px;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .site-description {
+            text-align: center;
+            max-width: 600px;
+            font-size: 16px;
+            color: #555;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin: 0 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: #2563eb;
+        }
+
+        .tab-btn.active {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #2563eb;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .right label {
+            display: block;
+            margin-bottom: 4px;
+            color: #374151;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        #signup-step1, #signup-step2 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .contact a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        .contact a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin: 8px 0;
+            padding: 8px 0;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+            cursor: pointer;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-navigation {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .back-btn {
+            flex: 1;
+            padding: 12px;
+            background-color: #f3f4f6;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .hero::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%; 
+        }
+
+        .hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    
+
+
+    <div class="container">
+        <div class="hero">
+            <img src="/images/loginphoto.jpg" alt="Login image" />
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="signin">Sign In</button>
+            <button class="tab-btn" data-tab="signup">Sign Up</button>
+        </div>
+
+        <div class="right">
+            <div id="signin" class="tab-content active">
+                <div class="social-buttons">
+                    <a href="@Url.Action("GoogleLogin", "Account")" class="google-btn" style="text-decoration: none;">
+                        <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                            <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303C33.915 32.658 29.423 36 24 36 16.82 36 11 30.18 11 23S16.82 10 24 10c3.178 0 6.077 1.205 8.291 3.177l5.657-5.657C34.626 4.077 29.58 2 24 2 11.85 2 2 11.85 2 24s9.85 22 22 22c10.998 0 21-8 21-22 0-1.3-.139-2.563-.389-3.917z"/>
+                            <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.351 16.199 18.822 14 24 14c3.178 0 6.077 1.205 8.291 3.177l5.657-5.657C34.626 7.077 29.58 5 24 5 15.531 5 8.312 9.797 6.306 14.691z"/>
+                            <path fill="#4CAF50" d="M24 43c5.346 0 10.317-1.953 14.103-5.195l-6.503-5.506C29.46 33.488 26.877 34 24 34c-5.393 0-9.868-3.359-11.53-8.045l-6.56 5.053C8.871 37.898 15.86 43 24 43z"/>
+                            <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-1.088 3.205-3.43 5.741-6.2 7.299l.001-.001 6.503 5.506C37.155 41.297 43 36.5 43 24c0-1.3-.139-2.563-.389-3.917z"/>
+                        </svg>
+                        <span>Continue with Google</span>
+                    </a>
+                </div>
+                <div class="separator"><span>or</span></div>
+
+                <form id="signin-form" asp-action="EnterEmail" asp-controller="Account" method="post">
+                    <input type="email" name="email" placeholder="Enter your email" required />
+                    <button type="submit" class="submit-btn">Continue</button>
+                </form>
+
+                <div class="contact">
+                    <a href="@Url.Action("Help", "Dashboard")">Have a problem? Contact Us</a>
+                </div>
+            </div>
+
+            <div id="signup" class="tab-content">
+                @if (TempData["InlineSignupError"] != null)
+                {
+                    <p style="color:red; text-align:center; margin-bottom:10px;">@TempData["InlineSignupError"]</p>
+                }
+                <form id="signup-form" asp-action="Register" asp-controller="Account" method="post" autocomplete="off">
+                    <div id="signup-step1">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" name="fullName" id="fullName" placeholder="example" required autocomplete="name" autocapitalize="off" spellcheck="false" />
+
+                        <label for="signup-email">Email</label>
+                        <input type="email" name="email" id="signup-email" placeholder="example@gmail.com" required autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="email" />
+
+                        <label for="signup-password">Password</label>
+                        <input type="password" name="password" id="signup-password" placeholder="At least 8 characters" minlength="8" required autocomplete="new-password" />
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="signup-confirm-password" placeholder="Re-enter your password" minlength="8" required autocomplete="new-password" />
+                        <button type="button" class="submit-btn" onclick="validateStep1()">Next</button>
+                    </div>
+
+                    <div id="signup-step2" style="display: none;">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="date" name="dateOfBirth" id="dateOfBirth" required />
+
+                        <label>Gender</label>
+                        <div class="radio-group" role="radiogroup" aria-label="Gender">
+                            <label><input type="radio" name="gender" id="gender-male" value="Male" required /> Male</label>
+                            <label><input type="radio" name="gender" id="gender-female" value="Female" /> Female</label>
+                        </div>
+
+                        <label>Role</label>
+                        <div class="radio-group" role="radiogroup" aria-label="Role">
+                            <label><input type="radio" name="role" id="role-student" value="Student" onchange="toggleADHD()" required /> Student</label>
+                            <label><input type="radio" name="role" id="role-teacher" value="Teacher" onchange="toggleADHD()" /> Teacher</label>
+                        </div>
+
+                        <div id="adhd-section" class="hidden">
+                            <label>ADHD</label>
+                            <div class="radio-group" role="radiogroup" aria-label="ADHD">
+                                <label><input type="radio" name="hasADHD" id="hasADHD-yes" value="true" /> I have ADHD</label>
+                                <label><input type="radio" name="hasADHD" id="hasADHD-no" value="false" /> I don't have ADHD</label>
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="back-btn" onclick="backToStep1()">Back</button>
+                            <button type="submit" class="submit-btn">Create Account</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="contact">
+                    <a href="@Url.Action("Help", "Dashboard")">Need help? Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    btn.classList.add('active');
+                    
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            const openSignup = '@(TempData["OpenSignup"] as string)';
+            if (openSignup === 'true') {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                const signupBtn = document.querySelector('.tab-btn[data-tab="signup"]');
+                const signupContent = document.getElementById('signup');
+                if (signupBtn && signupContent) {
+                    signupBtn.classList.add('active');
+                    signupContent.classList.add('active');
+                }
+            }
+        });
+
+        function toggleADHD() {
+            const role = document.querySelector('input[name="role"]:checked').value;
+            document.getElementById("adhd-section").style.display = (role === "Student") ? "block" : "none";
+        }
+
+        function validateStep1() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            
+            if (!fullName || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters');
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            const emailRegex = new RegExp('^[^\\s@@]+@@[^\\s@@]+\\.[^\\s@@]+$');
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            document.getElementById('signup-step1').style.display = 'none';
+            document.getElementById('signup-step2').style.display = 'block';
+        }
+        
+        function backToStep1() {
+            document.getElementById('signup-step1').style.display = 'block';
+            document.getElementById('signup-step2').style.display = 'none';
+        }
+        
+      
+    </script>
+</body>
+</html>
